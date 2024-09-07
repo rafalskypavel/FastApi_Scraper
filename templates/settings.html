@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Настройки{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Настройки</h1>
+    <p class="text-center">Здесь вы можете просмотреть текущие настройки приложения.</p>
+
+    <div class="accordion" id="settingsAccordion">
+        {% for base_url, details in settings.items() %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{ loop.index }}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                        {{ base_url }}
+                    </button>
+                </h2>
+                <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#settingsAccordion">
+                    <div class="accordion-body">
+                        <p><strong>Start Page:</strong> {{ details.start_page }}</p>
+                        <p><strong>Page Param:</strong> {{ details.page_param }}</p>
+                        <p><strong>Template Name:</strong> {{ details.template_name }}</p>
+                        <p><strong>URLs:</strong>
+                            <ul>
+                                {% for url in details.urls %}
+                                    <li>{{ url }}</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                        <p><strong>Product Card Selector:</strong> {{ details.template.product_card_selector }}</p>
+                        <p><strong>Fields:</strong>
+                            <ul>
+                                {% for field, selector in details.template.fields.items() %}
+                                    <li>{{ field }}: {{ selector }}</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!-- Modal for editing supplier -->
+<div class="modal fade" id="editSupplierModal" tabindex="-1" aria-labelledby="editSupplierModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSupplierModalLabel">Редактировать Поставщика</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-supplier-form">
+                    <input type="hidden" id="edit_base_url" name="edit_base_url">
+                    <div class="mb-3">
+                        <label for="edit_start_page" class="form-label">Начальная страница:</label>
+                        <input type="number" id="edit_start_page" name="edit_start_page" class="form-control" value="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_page_param" class="form-label">Параметр страницы:</label>
+                        <input type="text" id="edit_page_param" name="edit_page_param" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_template_name" class="form-label">Имя шаблона:</label>
+                        <input type="text" id="edit_template_name" name="edit_template_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_urls" class="form-label">Ссылки для парсинга (одна на строку):</label>
+                        <textarea id="edit_urls" name="edit_urls" class="form-control" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_product_card_selector" class="form-label">Селектор карточки продукта:</label>
+                        <input type="text" id="edit_product_card_selector" name="edit_product_card_selector" class="form-control" required>
+                    </div>
+                    <div id="edit-fields-container">
+                        <label class="form-label">Поля:</label>
+                    </div>
+                    <button type="button" class="btn btn-secondary mb-3" onclick="addEditField()">Добавить поле</button>
+                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

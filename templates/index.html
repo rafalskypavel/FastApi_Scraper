@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Управление Парсингом{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Управление Парсингом</h1>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="saved-suppliers-tab" data-bs-toggle="tab" data-bs-target="#saved-suppliers" type="button" role="tab" aria-controls="saved-suppliers" aria-selected="true">Сохраненные Поставщики</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="add-supplier-tab" data-bs-toggle="tab" data-bs-target="#add-supplier" type="button" role="tab" aria-controls="add-supplier" aria-selected="false">Добавить Поставщика</button>
+    </li>
+</ul>
+<div class="tab-content mt-4" id="myTabContent">
+    <div class="tab-pane fade show active" id="saved-suppliers" role="tabpanel" aria-labelledby="saved-suppliers-tab">
+        {% include "saved_suppliers.html" %}
+    </div>
+    <div class="tab-pane fade" id="add-supplier" role="tabpanel" aria-labelledby="add-supplier-tab">
+        {% include "add_supplier.html" %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/main.js"></script>
+<script src="/static/js/fields.js"></script>
+<script src="/static/js/suppliers.js"></script>
+<script src="/static/js/test.js"></script>
+{% endblock %}

@@ -1,0 +1,140 @@
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <form id="add-supplier-form">
+                <div class="mb-3">
+                    <label for="base_url" class="form-label">Базовый URL:</label>
+                    <input type="url" id="base_url" name="base_url" class="form-control" required>
+                    <div class="form-text">Базовый URL сайта, который вы хотите парсить.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="start_page" class="form-label">Начальная страница:</label>
+                    <input type="number" id="start_page" name="start_page" class="form-control" value="1" required>
+                    <div class="form-text">Номер страницы, с которой нужно начать парсинг.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="page_param" class="form-label">Параметр страницы:</label>
+                    <input type="text" id="page_param" name="page_param" class="form-control" value="None" required>
+                    <div class="form-text">Введите параметр страницы, например, "page" или "PAGEN_1".</div>
+                </div>
+                <div class="mb-3">
+                    <label for="template_name" class="form-label">Имя шаблона:</label>
+                    <input type="text" id="template_name" name="template_name" class="form-control" required>
+                    <div class="form-text">Имя шаблона, который будет использоваться для парсинга.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="urls" class="form-label">Ссылки для парсинга (одна на строку):</label>
+                    <textarea id="urls" name="urls" class="form-control" required></textarea>
+                    <div class="form-text">Перечень ссылок для парсинга, каждая ссылка на новой строке.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="product_card_selector" class="form-label">Селектор карточки продукта:</label>
+                    <input type="text" id="product_card_selector" name="product_card_selector" class="form-control" required>
+                    <div class="form-text">CSS селектор для идентификации карточек продуктов.</div>
+                </div>
+                <div id="fields-container">
+                    <div class="row mb-3">
+                        <div class="col"><strong>Название поля</strong></div>
+                        <div class="col"><strong>Селектор поля</strong></div>
+                        <div class="col"><strong>Тип данных</strong></div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row mb-3" id="field-row-0">
+                        <div class="col">
+                            <input type="text" id="field_name_0" class="form-control" value="URL" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="field_selector_0" class="form-control" required>
+                        </div>
+                        <div class="col">
+                            <select id="field_type_0" class="form-control" required>
+                                <option value="str">str</option>
+                                <option value="int">int</option>
+                                <option value="float">float</option>
+                            </select>
+                        </div>
+                        <div class="col d-flex align-items-end">
+                            <button type="button" class="btn btn-danger ms-2" onclick="removeField(0)">Удалить</button>
+                        </div>
+                    </div>
+                    <div class="row mb-3" id="field-row-1">
+                        <div class="col">
+                            <input type="text" id="field_name_1" class="form-control" value="Name" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="field_selector_1" class="form-control" required>
+                        </div>
+                        <div class="col">
+                            <select id="field_type_1" class="form-control" required>
+                                <option value="str">str</option>
+                                <option value="int">int</option>
+                                <option value="float">float</option>
+                            </select>
+                        </div>
+                        <div class="col d-flex align-items-end">
+                            <button type="button" class="btn btn-danger ms-2" onclick="removeField(1)">Удалить</button>
+                        </div>
+                    </div>
+                    <div class="row mb-3" id="field-row-2">
+                        <div class="col">
+                            <input type="text" id="field_name_2" class="form-control" value="RRP" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" id="field_selector_2" class="form-control" required>
+                        </div>
+                        <div class="col">
+                            <select id="field_type_2" class="form-control" required>
+                                <option value="str">str</option>
+                                <option value="int">int</option>
+                                <option value="float">float</option>
+                            </select>
+                        </div>
+                        <div class="col d-flex align-items-end">
+                            <button type="button" class="btn btn-danger ms-2" onclick="removeField(2)">Удалить</button>
+                        </div>
+                    </div>
+                    <div class="row mb-3" id="field-row-3">
+                        <div class="col">
+                            <input type="text" id="field_name_3" class="form-control" value="SKU">
+                        </div>
+                        <div class="col">
+                            <input type="text" id="field_selector_3" class="form-control">
+                        </div>
+                        <div class="col">
+                            <select id="field_type_3" class="form-control">
+                                <option value="str">str</option>
+                                <option value="int">int</option>
+                                <option value="float">float</option>
+                            </select>
+                        </div>
+                        <div class="col d-flex align-items-end">
+                            <button type="button" class="btn btn-danger ms-2" onclick="removeField(3)">Удалить</button>
+                        </div>
+                    </div>
+                    <div class="row mb-3" id="field-row-4">
+                        <div class="col">
+                            <input type="text" id="field_name_4" class="form-control" value="Brand">
+                        </div>
+                        <div class="col">
+                            <input type="text" id="field_selector_4" class="form-control">
+                        </div>
+                        <div class="col">
+                            <select id="field_type_4" class="form-control">
+                                <option value="str">str</option>
+                                <option value="int">int</option>
+                                <option value="float">float</option>
+                            </select>
+                        </div>
+                        <div class="col d-flex align-items-end">
+                            <button type="button" class="btn btn-danger ms-2" onclick="removeField(4)">Удалить</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary mt-3" onclick="addField()">Добавить Поле Ещё</button>
+                <button type="submit" class="btn btn-primary mt-3">Добавить Поставщика</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

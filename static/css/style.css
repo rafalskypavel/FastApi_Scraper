@@ -1,0 +1,161 @@
+/* Основные стили */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F8F9FA;
+    color: #212121;
+    margin: 0;
+    padding: 0;
+}
+
+/* Заголовки */
+h1, h2 {
+    color: #424242;
+    font-weight: 700;
+}
+
+/* Карточки */
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Кнопки */
+.btn {
+    font-weight: 500;
+    border-radius: 50px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+    background-color: #1E88E5;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1565C0;
+    transform: scale(1.05);
+}
+
+.btn-success {
+    background-color: #43A047;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #2E7D32;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #E53935;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #D32F2F;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #6C757D;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5A6268;
+    transform: scale(1.05);
+}
+
+/* Табы */
+.nav-tabs .nav-link {
+    color: #212121;
+    border: none;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #E3F2FD;
+    color: #1E88E5;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Модальные окна */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+/* Прочие элементы */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(30, 136, 229, 0.25);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Таблица */
+table.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.dataTable th,
+table.dataTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table.dataTable th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+table.dataTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table.dataTable tr:hover {
+    background-color: #ddd;
+}
+
+table.dataTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+}
+
