@@ -1,100 +1,71 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Управление Парсингом - Dashboard</title>
-    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Парсинг Управление</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">Dashboard</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Поиск</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">Dashboard</h1>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">Всего Поставщиков</h5>
-                        <p class="card-text">Количество зарегистрированных поставщиков: {{ total_suppliers }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-success">
-                    <div class="card-body">
-                        <h5 class="card-title">Успешные Парсинги</h5>
-                        <p class="card-text">Количество успешных парсингов: {{ successful_scrapes }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-white bg-danger">
-                    <div class="card-body">
-                        <h5 class="card-title">Ошибки Парсинга</h5>
-                        <p class="card-text">Количество ошибок парсинга: {{ scrape_errors }}</p>
-                    </div>
+{% block title %}Просмотр данных{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Dashboard</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Всего Поставщиков</h5>
+                    <p class="card-text">Количество зарегистрированных поставщиков: {{ total_suppliers }}</p>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-header">
-                        Недавние Парсинги
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        {% for scrape in recent_scrapes %}
-                            <li class="list-group-item">
-                                {{ scrape.supplier_name }} - {{ scrape.status }}
-                                <span class="badge bg-secondary float-end">{{ scrape.date }}</span>
-                            </li>
-                        {% endfor %}
-                    </ul>
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Успешные Парсинги</h5>
+                    <p class="card-text">Количество успешных парсингов: {{ successful_scrapes }}</p>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-header">
-                        Популярные Поставщики
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        {% for supplier in popular_suppliers %}
-                            <li class="list-group-item">
-                                {{ supplier.name }} - {{ supplier.usage_count }} парсингов
-                            </li>
-                        {% endfor %}
-                    </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title">Ошибки Парсинга</h5>
+                    <p class="card-text">Количество ошибок парсинга: {{ scrape_errors }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS and necessary dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    Недавние Парсинги
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for scrape in recent_scrapes %}
+                        <li class="list-group-item">
+                            {{ scrape.supplier_name }} - {{ scrape.status }}
+                            <span class="badge bg-secondary float-end">{{ scrape.date }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    Популярные Поставщики
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for supplier in popular_suppliers %}
+                        <li class="list-group-item">
+                            {{ supplier.name }} - {{ supplier.usage_count }} парсингов
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and necessary dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
